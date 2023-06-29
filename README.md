@@ -1,5 +1,7 @@
 # README
 
+![home](media/image/screenshot/home.png)
+
 ## Cloo web framework v1.0.0
 
 [docs](docs/index.md) | 
@@ -11,4 +13,3 @@
   static and dynamic websites.
   A [smarty](https://www.smarty.net/) like syntax template system is provided for ease of use 
   of PHP code in the frontend.
-  
