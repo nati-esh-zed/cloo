@@ -4,7 +4,7 @@
     <div class="navbar-header">
         <a class="navbar-brand" href="{$php.self$}?page=home">
             <img src="{$site.base_url$}media/image/logo.svg" width="50"/>
-            {$site.name$}
+            {* {$site.name$} *}
         </a>
     </div>
     <button 
