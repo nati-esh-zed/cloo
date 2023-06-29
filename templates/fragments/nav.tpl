@@ -21,25 +21,25 @@
         id="navbars-main" 
         class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item {$eval {$@php.get.page$} == 'home' ? 'active' : '' $}">
                 <a class="nav-link" href="{$php.self$}?page=home">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {$eval {$@php.get.page$} == 'about' ? 'active' : '' $}">
                 <a class="nav-link" href="{$php.self$}?page=about">About</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown {$eval substr_compare({$@php.get.page$}, 'testing/', 0, 8) == 0 ? 'active' : '' $}">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Testing<span class="caret"></span></a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{$php.self$}?page=testing/table">table</a>
+                    <a class="dropdown-item {$eval {$@php.get.page$} == 'testing/table' ? 'active' : '' $}" href="{$php.self$}?page=testing/table">table</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown {$eval substr_compare({$@php.get.page$}, 'account/', 0, 8) == 0 ? 'active' : '' $}">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Account<span class="caret"></span></a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{$php.self$}?page=account/login"><i class="fa fa-fw fa-lg fa-sign-in"></i> login</a>
-                    <a class="dropdown-item" href="{$php.self$}?page=account/register"><i class="fa fa-fw fa-lg fa-user-plus"></i> register</a>
+                    <a class="dropdown-item {$eval {$@php.get.page$} == 'account/login' ? 'active' : '' $}" href="{$php.self$}?page=account/login"><i class="fa fa-fw fa-lg fa-sign-in"></i> login</a>
+                    <a class="dropdown-item {$eval {$@php.get.page$} == 'account/register' ? 'active' : '' $}" href="{$php.self$}?page=account/register"><i class="fa fa-fw fa-lg fa-user-plus"></i> register</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{$php.self$}?page=account/report"><i class="fa fa-fw fa-lg fa-exclamation-circle"></i> report an issue</a>
+                    <a class="dropdown-item {$eval {$@php.get.page$} == 'account/report' ? 'active' : '' $}" href="{$php.self$}?page=account/report"><i class="fa fa-fw fa-lg fa-exclamation-circle"></i> report an issue</a>
                 </div>
             </li>
         </ul>
