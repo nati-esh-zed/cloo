@@ -2,7 +2,7 @@
 
 ![home](media/image/screenshot/home.png)
 
-## Cloo web framework v1.0.0
+## Cloo web framework v1.1.5
 
 [docs](docs/index.md) | 
 [license](LICENSE)

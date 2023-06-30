@@ -1,6 +1,6 @@
 <div class="col-12 col-sm-10 mx-auto">
-    <h3>testing table</h3>
-
+    <h3>Testing Table</h3>
+{$trim
     {$import db.Table $}
 
     {$set data=new db\Table(array(
@@ -9,8 +9,6 @@
         array('002', 'Tamru', 27),
         array('003', 'Saba', 26),
     )) $}
-
-    {$data->html() $}
-    {* {$html.table({$@data->rows$})$} *}
-    
+$}
+    {$html.table({$@data->rows$})$}    
 </div>

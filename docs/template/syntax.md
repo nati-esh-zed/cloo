@@ -12,5 +12,9 @@ To get a variable: use `{$var_id$}`.
 
 examples: `{$my_var$}`, `{$foo.bar$}`, `{$foo->bar$}`, `{$array['key']$}`
 
+### calling functions
+
+To call a function: use `{$function_var_id(params...)$}`.
+
 
 *next: [keywords](keywords.md)*

@@ -30,7 +30,10 @@
             <li class="nav-item dropdown {$eval substr_compare({$@php.get.page$}, 'testing/', 0, 8) == 0 ? 'active' : '' $}">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Testing<span class="caret"></span></a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item {$eval {$@php.get.page$} == 'testing/table' ? 'active' : '' $}" href="{$php.self$}?page=testing/table">table</a>
+                    {$foreach( {$@list_sub_templates('testing', 'pages') $} as page )
+                        {<a class="dropdown-item {$eval {$@php.get.page $} == {$@page.rpath $} ? 'active' : '' $}" href="{$php.self $}?page={$page.rpath $}">{$page.name $}</a>
+                    }
+                $}
                 </div>
             </li>
             <li class="nav-item dropdown {$eval substr_compare({$@php.get.page$}, 'account/', 0, 8) == 0 ? 'active' : '' $}">
