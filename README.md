@@ -13,3 +13,8 @@
   static and dynamic websites.
   A [smarty](https://www.smarty.net/) like syntax template system is provided for ease of use 
   of PHP code in the frontend.
+
+## setup
+
+copy this project directory to where your web server can access them. eg. in `/var/www/html/cloo/`. Then edit `config/site.ini` and modify the  `name` and `base_url`.
+
