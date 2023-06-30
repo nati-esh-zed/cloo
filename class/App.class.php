@@ -12,7 +12,7 @@ class App
     __construct()
     {
         global $VAR;
-        define('cloo_version', '1.1.5');
+        define('cloo_version', '1.2.9');
         define('command_token_start',     '{$');
         define('command_token_end',       '$}');
         define('command_token_start_len', strlen(command_token_start));
@@ -649,27 +649,28 @@ class App
                                     for(; $cur_i < $end_i; ++$cur_i)
                                     {
                                         $ch = $string[$cur_i];
-                                        if(!($ch == ' ' || $ch == "\t" || $ch == "\n"))
+                                        if(!($this->_is_space($ch)))
                                             break;
                                     }
                                     // check for 'else [if]' keyword
                                     $len_left = $end_i - $cur_i;
-                                    if($len_left >= 7 && (
-                                        substr_compare($string, 'else if ', $cur_i, 8) == 0 ||
-                                        substr_compare($string, 'else if(', $cur_i, 8) == 0
-                                    ))
+                                    if($len_left >= 7 && substr_compare($string, 'else if', $cur_i, 7) == 0
+                                        && ($len_left > 7 
+                                            ? ($string[$cur_i + 7] == '(' || $this->_is_space($string[$cur_i + 7]))
+                                            : true)
+                                    )
                                     {
                                         // echo "{{else if}}\n";
                                         $cur_i += $string[$cur_i] == '(' ? 7 : 8;
                                         $expecting_condition = true;
                                     }
-                                    else if($len_left >= 5 && (
-                                        substr_compare($string, 'else ', $cur_i, 5) == 0 ||
-                                        substr_compare($string, 'else(', $cur_i, 5) == 0
-                                    ))
+                                    else if($len_left >= 4 && substr_compare($string, 'else', $cur_i, 4) == 0
+                                        && ($len_left > 4 
+                                            ? ($string[$cur_i + 4] == '(' || $this->_is_space($string[$cur_i + 4]))
+                                            : true))
                                     {
                                         // echo "{{else}}\n";
-                                        $cur_i += $string[$cur_i] == '(' ? 4 : 5;
+                                        $cur_i += $string[$cur_i] == '{' ? 4 : 5;
                                         $expecting_condition = false;
                                         $rcondition          = true;
                                     }
@@ -696,7 +697,7 @@ class App
                                         }
                                         else if($open_parenthesis <= 0)
                                         {
-                                            if($ch == ' ' || $ch == "\t" || $ch == "\n")
+                                            if($this->_is_space($ch))
                                             {
                                                 $condition_end_i = $cur_i;
                                                 break;
@@ -742,6 +743,7 @@ class App
                                             }
                                         }
                                     }
+                                    // echo "[$condition:$rcondition] \{" . substr($string, $block_start_i, $block_end_i - $block_start_i) . "\}\n";
                                     if($rcondition)
                                     {
                                         // echo "[$condition:$rcondition] \{" . substr($string, $block_start_i, $block_end_i - $block_start_i) . "\}\n";
@@ -793,7 +795,7 @@ class App
                                         }
                                         else if($open_parenthesis <= 0)
                                         {
-                                            if($ch == ' ' || $ch == "\t" || $ch == "\n")
+                                            if($this->_is_space($ch))
                                             {
                                                 $foreach_code_end_i = $cur_i;
                                                 break;

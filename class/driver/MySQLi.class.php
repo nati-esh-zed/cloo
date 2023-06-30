@@ -33,23 +33,27 @@ class MySQLi
     public function
     connect($user_, $pass_, $database_ = null, $host_ = 'localhost', $port_ = 3306)
     {
-        \mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $connection_ = \mysqli_connect($host_, $user_, $pass_, $database_, $port_);
-        if($connection_)
+        if(!$this->_connection)
         {
-            $this->_host = $host_;
-            $this->_port = $port_;
-            $this->_user = $user_;
-            $this->_pass = $pass_;
-            $this->_db   = $database_;
-            $this->_connection = $connection_;
-            return true;
+            \mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            $connection_ = \mysqli_connect($host_, $user_, $pass_, $database_, $port_);
+            if($connection_)
+            {
+                $this->_host = $host_;
+                $this->_port = $port_;
+                $this->_user = $user_;
+                $this->_pass = $pass_;
+                $this->_db   = $database_;
+                $this->_connection = $connection_;
+                return true;
+            }
+            else
+            {
+                return \mysqli_error($connection_);
+            }
+            return false;
         }
-        else
-        {
-            return \mysqli_error($connection_);
-        }
-        return false;
+        return $this->_connection;
     }
 
     public function

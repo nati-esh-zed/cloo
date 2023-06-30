@@ -39,8 +39,14 @@
             <li class="nav-item dropdown {$eval substr_compare({$@php.get.page$}, 'account/', 0, 8) == 0 ? 'active' : '' $}">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Account<span class="caret"></span></a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item {$eval {$@php.get.page$} == 'account/login' ? 'active' : '' $}" href="{$php.self$}?page=account/login"><i class="fa fa-fw fa-lg fa-sign-in"></i> login</a>
+                {$if (!isset({$@login_info$}))
+                    {<a class="dropdown-item {$eval {$@php.get.page$} == 'account/login' ? 'active' : '' $}" href="{$php.self$}?page=account/login"><i class="fa fa-fw fa-lg fa-sign-in"></i> login</a>
                     <a class="dropdown-item {$eval {$@php.get.page$} == 'account/register' ? 'active' : '' $}" href="{$php.self$}?page=account/register"><i class="fa fa-fw fa-lg fa-user-plus"></i> register</a>
+                } else
+                    {<a class="dropdown-item {$eval {$@php.get.page$} == 'account/register' ? 'active' : '' $}" href="{$php.self$}?page=account/profile"><i class="fa fa-fw fa-lg fa-circle-user"></i> profile</a>
+                    <button class="dropdown-item" onclick="handle_logout()"><i class="fa fa-fw fa-lg fa-sign-out"></i> logout</button>
+                }
+                $}
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item {$eval {$@php.get.page$} == 'account/report' ? 'active' : '' $}" href="{$php.self$}?page=account/report"><i class="fa fa-fw fa-lg fa-exclamation-circle"></i> report an issue</a>
                 </div>
@@ -69,9 +75,10 @@
             </div>
         </form> *}
     </div>
-    {$if ({$php.cookie.login:default{false}$})
-    {<div class="d-block d-md-inline-block float-right float-md-none">
-        <a class="" href="{$php.self$}?page=account/login"><i class="fa-regular fa-2x fa-circle-user p-2"></i></a>
+    {$if (isset({$@login_info$}))
+    {<div class="d-table d-md-inline-block float-right float-md-none">
+        <div class="d-table-cell align-middle">{$login_info.username$}</div>
+        <a class="d-table-cell align-middle" href="{$php.self$}?page=account/profile"><i class="fa-regular fa-2x fa-circle-user p-2"></i></a>
     </div>}
     $}
 </nav>
