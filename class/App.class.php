@@ -303,7 +303,8 @@ class App
             $config_count = 0;
             while(($node = readdir($dir)) !== false)
             {
-                if($node == '.' || $node == '..' || $node == $this->common_config_file)
+                if($node == '.' || $node == '..' 
+                    || ($subdir == null && $node == $this->common_config_file))
                     continue;
                 $rpath = $subdir == null ? $node : ($subdir . '/' . $node);
                 $path  = $config_dir . $node;
