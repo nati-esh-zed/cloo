@@ -1,14 +1,13 @@
 <div class="col-12 col-sm-10 mx-auto">
     <h3>Testing Table</h3>
 {$trim
-    {$import db.Table $}
 
-    {$set data=new db\Table(array(
+    {$set table=array(
         array('ID', 'NAME', 'AGE'),
         array('001', 'Natnael', 25),
         array('002', 'Tamru', 27),
         array('003', 'Saba', 26),
-    )) $}
+    ) $}
 $}
-    {$html.table({$@data->rows$})$}    
+    {$html.table({$@table$})$}    
 </div>
